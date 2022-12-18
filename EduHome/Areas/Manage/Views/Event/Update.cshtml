@@ -1,0 +1,91 @@
+﻿@model Event
+
+@{
+    ViewData["Title"] = "Update";
+    ViewData["Title"] = "Create";
+    IEnumerable<CourseCategory> categories = ViewBag.Categories;
+    SelectList selectListCategory = new SelectList(categories, nameof(CourseCategory.Id), nameof(CourseCategory.Name));
+    IEnumerable<Tag> tags = ViewBag.Tags;
+    SelectList selectListTag = new SelectList(tags, nameof(Tag.Id), nameof(Tag.Name));
+    IEnumerable<Speaker> speakers = ViewBag.Speakers;
+    SelectList selectlistSpeaker = new SelectList(speakers, nameof(Speaker.Id), nameof(Speaker.FullName));
+}
+
+
+
+<h4>Update Event</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Update">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="MonthDay" class="control-label"></label>
+                <input asp-for="MonthDay" class="form-control" />
+                <span asp-validation-for="MonthDay" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartTime" class="control-label"></label>
+                <input asp-for="StartTime" class="form-control" />
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="EndTime" class="control-label"></label>
+                <input asp-for="EndTime" class="form-control" />
+                <span asp-validation-for="EndTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Venue" class="control-label"></label>
+                <input asp-for="Venue" class="form-control" />
+                <span asp-validation-for="Venue" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CourseCategoryId" class="control-label"></label>
+                <select asp-for="CourseCategoryId" class="form-control" asp-items="selectListCategory"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SpeakerIds" class="control-label"></label>
+                <select asp-for="SpeakerIds" class="form-control" asp-items="selectlistSpeaker"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="TagIds" class="control-label"></label>
+                <select asp-for="TagIds" class="form-control" asp-items="selectListTag"></select>
+            </div>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input asp-for="IsDeleted" /> @Html.DisplayNameFor(model => model.IsDeleted)
+                    </label>
+                </div>
+            </div>
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-dark" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+</div>
+
+@section script{
+    @await Html.PartialAsync("_ValidationPartial")
+}

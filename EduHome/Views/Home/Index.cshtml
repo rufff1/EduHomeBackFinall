@@ -1,0 +1,229 @@
+﻿@model HomeVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+<!-- Background Area Start -->
+<section id="slider-container" class="slider-area">
+    <div class="slider-owl owl-theme owl-carousel">
+        <!-- Start Slingle Slide -->
+        @foreach (Slider slider in Model.Sliders)
+        {
+            <div class="single-slide item" style="background-image: url(assets/img/slider/@slider.Image)">
+                <!-- Start Slider Content -->
+                <div class="slider-content-area">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-7 col-md-offset-left-5">
+                                <div class="slide-content-wrapper">
+                                    <div class="slide-content">
+                                        <h3>@slider.Title </h3>
+                                      
+                                        <p>@slider.Description</p>
+                                        <a class="default-btn" asp-controller="about" asp-action="index">Learn more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Start Slider Content -->
+            </div>
+        }
+
+        <!-- End Slingle Slide -->
+
+    </div>
+</section>
+<!-- Background Area End -->
+<!-- Notice Start -->
+<section class="notice-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="notice-left">
+                    <h3>notice board</h3>
+                    @foreach (NoticeBoard noticeBoard in Model.NoticeBoards)
+                    {
+                        <div class="single-notice-left mb-23 pb-20">
+                            <h4>@noticeBoard.Date</h4>
+                            <p>@noticeBoard.Description</p>
+                        </div>
+                    }
+
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="notice-right">
+                    @foreach (NoticeRight noticeRight in Model.NoticeRights)
+                    {
+                        <div class="single-notice-right mb-25 pb-10">
+
+                            <h3>@noticeRight.Title</h3>
+                            <p>@noticeRight.Description</p>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Notice End -->
+<!-- Choose Start -->
+<section class="choose-area pb-85 pt-77">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-left-4 col-sm-8 col-md-offset-left-4">
+                <div class="choose-content text-left">
+                    <h2>@Model.whyEduHome.Title</h2>
+                   
+                    <p class="choose-option">@Model.whyEduHome.Description</p>
+                    <a class="default-btn" asp-controller="course" asp-action="index">view courses</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Choose Area End -->
+<!-- Courses Area Start -->
+<div class="courses-area pt-150 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <h2>COURSES WE OFFER</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @await Html.PartialAsync("_CoursePartialView", Model.Courses)
+
+        </div>
+    </div>
+</div>
+<!-- Courses Area End -->
+<!-- Event Area Start -->
+<div class="event-area one text-center pt-140 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title">
+                    <h2>UPCOMMING EVENTS</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-sm-12 col-xs-12">
+                @foreach (Event events in Model.Events.Take(4))
+                {
+                    <div class="single-event mb-35">
+                        <div class="event-date">
+                            <h3><a asp-controller="event" asp-action="detail" asp-route-id="@events.Id">@events.StartTime.ToString("hh") <span>@events.StartTime.ToString("MMMM").Substring(0,3)</span></a></h3>
+                        </div>
+                        <div class="event-content text-left">
+                            <div class="event-content-left">
+                                <h4><a asp-controller="event" asp-action="detail" asp-route-id="@events.Id"> @events.Name</a></h4>
+                                <ul>
+                                    <li><i class="fa fa-clock-o"></i>@events.StartTime.ToString("hh") AM - @events.EndTime.ToString("hh") PM</li>
+                                    <li><i class="fa fa-map-marker"></i>@events.Venue</li>
+                                </ul>
+                            </div>
+                            <div class="event-content-right">
+                                <a class="default-btn" asp-controller="event" asp-action="detail" asp-route-id="@events.Id">join now</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="col-md-6 hidden-sm hidden-xs">
+                @foreach (Event events in Model.Events.Take(4).OrderByDescending(x=> x.Name))
+                {
+                    <div class="single-event mb-35">
+                        <div class="event-date">
+                            <h3><a asp-controller="event" asp-action="detail" asp-route-id="@events.Id">@events.StartTime.ToString("dd") <span>@events.EndTime.ToString("MMMM").Substring(0,3)</span></a></h3>
+                        </div>
+                        <div class="event-content text-left">
+                            <div class="event-content-left">
+                                <h4><a asp-controller="event" asp-action="detail" asp-route-id="@events.Id"> @events.Name</a></h4>
+                                <ul>
+                                    <li><i class="fa fa-clock-o"></i>@events.StartTime.ToString("hh") AM - @events.EndTime.ToString("hh") PM</li>
+                                    <li><i class="fa fa-map-marker"></i>@events.Venue</li>
+                                </ul>
+                            </div>
+                            <div class="event-content-right">
+                                <a class="default-btn" asp-controller="event" asp-action="detail" asp-route-id="@events.Id">join now</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Event Area End -->
+<!-- Testimonial Area Start -->
+<div class="testimonial-area pt-110 pb-105 text-center">
+    <div class="container">
+        <div class="row">
+            <div class="testimonial-owl owl-theme owl-carousel">
+                <div class="col-md-8 col-md-offset-2 col-sm-12">
+                    <div class="single-testimonial">
+                        <div class="testimonial-info">
+                            <div class="testimonial-img">
+                                <img src="~/assets/img/testimonial/@Model.testimional.Image" alt="testimonial">
+                            </div>
+                            <div class="testimonial-content">
+                                <p>@Model.testimional.Description</p>
+                                <h4>@Model.testimional.FullName</h4>
+                                <h5>@Model.testimional.Position</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Testimonial Area End -->
+<!-- Blog Area Start -->
+<div class="blog-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title text-center">
+                    <h2>LATEST FROM BLOG</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (Blog blog in Model.Blogs)
+            {
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="single-blog">
+                        <div class="blog-img">
+                            <a asp-controller="blog" asp-action="detail" asp-route-id="@blog.Id"><img src="~/assets/img/blog/@blog.Image" alt="blog"></a>
+                            <div class="blog-hover">
+                                <a asp-controller="blog" asp-action="detail" asp-route-id="@blog.Id"><i class="fa fa-link"></i></a>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-top">
+                                <p>By @blog.Author  /  @blog.CreatAt.ToString()  /  <i class="fa fa-comments-o"></i> 4</p>
+                            </div>
+                            <div class="blog-bottom">
+                                <h2><a asp-controller="blog" asp-action="detail" asp-route-id="@blog.Id">@blog.Name </a></h2>
+                                <a asp-controller="blog" asp-action="detail" asp-route-id="@blog.Id">read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+<!-- Blog Area End -->

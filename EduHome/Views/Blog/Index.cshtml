@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Blog>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>blog</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Blog Start -->
+<div class="blog-area pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            @foreach (Blog blog in Model)
+            {
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="single-blog mb-60">
+                        <div class="blog-img">
+                            <a asp-controller="blog" asp-action="detail" asp-route-id="@blog.Id"><img src="~/assets/img/blog/@blog.Image" alt="blog"></a>
+                            <div class="blog-hover">
+                                <i class="fa fa-link"></i>
+                            </div>
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-top">
+                                <p>By @blog.Author  /  @blog.CreatAt.ToString()  /  <i class="fa fa-comments-o"></i> 4</p>
+                            </div>
+                            <div class="blog-bottom">
+                                <h2><a asp-controller="blog" asp-action="detail" asp-route-id="@blog.Id">@blog.Name</a></h2>
+                                <a asp-controller="blog" asp-action="detail" asp-route-id="@blog.Id">read more</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+        </div>
+        <div class="row justify-content-center mt-4">
+            <nav style="display:flex;justify-content:center" aria-label="...">
+                <ul class="pagination" style="justify-content:center">
+
+                    <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
+                        <a class="page-link" asp-controller="blog" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+                    </li>
+
+                    @for (int i = 1; i <= ViewBag.TotalPage; i++)
+                    {
+        <li class="page-item  @(ViewBag.CurrentPage == i ? "active" : "")" style="pointer-events: @(ViewBag.CurrentPage == i ? "none" : "")"><a class="page-link" asp-controller="blog" asp-action="index" asp-route-page="@i">@i</a></li>            }
+
+                    <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPage ? "disabled" : "")">
+                        <a class="page-link" asp-controller="blog" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</div>
+<!-- Blog End -->

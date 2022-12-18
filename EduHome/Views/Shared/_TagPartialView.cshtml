@@ -1,0 +1,12 @@
+﻿@model IEnumerable<Tag>
+
+<div class="single-blog-widget">
+    <h3>tags</h3>
+    <div class="single-tag">
+        @foreach (Tag tag in Model)
+        {
+            <a asp-controller="course" asp-action="TagFindCourse" asp-route-id="@tag.Id" class="mr-10 mb-10">@tag.Name</a>
+
+        }
+    </div>
+</div>

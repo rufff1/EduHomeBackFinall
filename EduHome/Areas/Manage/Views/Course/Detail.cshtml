@@ -1,0 +1,108 @@
+﻿@model Course
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+
+
+<div>
+    <h4>Detail Course</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd>
+            <img width="400" src="~/assets/img/course/@Model.Image" alt="Alternate Text" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.About)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.About)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.HowToApply)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.HowToApply)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CERTIFICATION)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CERTIFICATION)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LeaveReply)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.LeaveReply)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CourseCategory)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CourseCategory.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsDeleted)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatAt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatAt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateAt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdateAt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.UpdateBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.UpdateBy)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedAt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeletedAt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.DeletedBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.DeletedBy)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a class="btn btn-dark" asp-action="Edit" asp-route-id="@Model.Id">Update</a> |
+    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+</div>

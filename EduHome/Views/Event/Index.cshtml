@@ -1,0 +1,73 @@
+﻿@model IEnumerable<Event>
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>event</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- Event Start -->
+<div class="event-area three text-center pt-150 pb-150">
+    <div class="container">
+        <div class="row">
+            @foreach (Event events in Model)
+            {
+                <div class="col-md-4 col-sm-6 col-xs-12">
+                    <div class="single-event mb-60">
+                        <div class="event-img">
+                            <a asp-controller="event" asp-action="detail" asp-route-id="@events.Id">
+                                <img src="~/assets/img/event/@events.Image" alt="event">
+                                <div class="course-hover">
+                                    <i class="fa fa-link"></i>
+                                </div>
+                            </a>
+                            <div class="event-date">
+                                <h3><a asp-controller="event" asp-action="detail" asp-route-id="@events.Id">@events.StartTime.ToString("hh") <span>@events.StartTime.ToString("MMMM").Substring(0,3)</span></a></h3>
+                            </div>
+
+                        </div>
+                        <div class="event-content text-left">
+                            <h4><a asp-controller="event" asp-action="detail" asp-route-id="@events.Id">
+                                            @if (events.Name.Length > 22)
+                                                 {
+                                                    @events.Name.Substring(0, 21);
+                                                  }
+                                                     else
+                                                  {
+                                                     @events.Name
+                                                    }
+
+                                           </a></h4>
+                            <ul>
+                                <li><span>time:</span> @events.StartTime.ToString("hh") AM - @events.EndTime.ToString("hh") PM</li>
+                                <li><span>venue</span> @events.Venue</li>
+                            </ul>
+                            <div class="event-content-right">
+                                <a class="default-btn" asp-controller="event" asp-action="detail" asp-route-id="@events.Id">join now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+
+
+        </div>
+    </div>
+</div>
+<!-- Event End -->

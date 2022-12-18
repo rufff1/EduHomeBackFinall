@@ -1,0 +1,89 @@
+﻿@model Blog
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+
+    <h4>Blog Detail</h4>
+
+<div>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <dd>
+            <img width="400" src="~/assets/img/blog/@Model.Image" alt="Alternate Text" />
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BlogTags)
+        </dt>
+        <dd>
+            .@(Model.BlogTags != null && Model.BlogTags.Count() > 0 ? string.Join(", ", Model.BlogTags.Select(x => x.Tag.Name)) : "")
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Author)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Author)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <dd>
+            @if (Model.Description.Length > 100)
+            {
+                @Model.Description.Substring(0, 100)
+
+            }
+            else
+            {
+                @Model.Description
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.QuatoDescrpt)
+        </dt>
+        <dd>
+            @if (Model.QuatoDescrpt.Length > 100 )
+            {
+                @Model.QuatoDescrpt.Substring(0, 100)
+
+            }
+            else
+            {
+                @Model.QuatoDescrpt
+            }
+        </dd>
+        <dt>
+            Blog Category
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CourseCategory.Name)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatAt)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatAt)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CreatBy)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CreatBy)
+        </dd>
+
+    </dl>
+</div>
+<div>
+    <a class="btn btn-dark" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+</div>

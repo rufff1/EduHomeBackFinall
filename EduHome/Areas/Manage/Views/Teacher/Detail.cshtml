@@ -1,0 +1,108 @@
+﻿@model Teacher
+
+@{
+    ViewData["Title"] = "Detail";
+}
+
+
+
+<div>
+    <h4>Teacher Detail</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Image)
+        </dt>
+        <td>
+            <img width="400" src="~/assets/img/teacher/@Model.Image" alt="Alternate Text" />
+        </td>
+        <dt>
+            @Html.DisplayNameFor(model => model.About)
+        </dt>
+        <dd>
+            @if (Model.About.Length > 100)
+            {
+                @Model.About.Substring(0, 100)
+            }
+            else
+            {
+                @Html.DisplayFor(model => model.About)
+            }
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Degree)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Degree)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Experience)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Experience)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Faculty)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Faculty)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Phone)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Phone)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Skype)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Skype)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Fblink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Fblink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.PinttLink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PinttLink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.VimeoLink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.VimeoLink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TwtLink)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TwtLink)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.TeacherPosition)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.TeacherPosition.Name)
+        </dd>
+</div>
+<div>
+    <a class="btn btn-dark" asp-action="update" asp-route-id="@Model.Id">Update</a> |
+    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+</div>

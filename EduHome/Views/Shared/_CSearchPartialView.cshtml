@@ -1,0 +1,14 @@
+﻿@model IEnumerable<SearchVM>
+@{ 
+    Layout = null;
+}
+
+@foreach (SearchVM item in Model)
+{
+<li>
+    <div style="align-items:center;display:flex;">
+        
+        <img width="150" src="~/assets/img/course/@item.Image" alt="Alternate Text" />
+        <a style="font-size:15px;padding-left:30px" asp-controller="course"  asp-action="detail" asp-route-id="@item.Id">@item.Name</a>
+        </div>
+</li>}

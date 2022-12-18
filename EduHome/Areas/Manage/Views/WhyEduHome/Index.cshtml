@@ -1,0 +1,84 @@
+﻿@model WhyEduHome
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Why Edu Home</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                <img width="100" src="~/assets/img/choose/@Model.Image" alt="Alternate Text" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Description)
+            </td>
+
+            <td>
+                <a class="btn btn-dark" asp-action="Update" asp-route-id="@Model.Id">Update</a> |
+                <a class="btn btn-dark" asp-action="Detail" asp-route-id="@Model.Id">Details</a> |
+                <a class="btn btn-dark delete-btn" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>
+            </td>
+        </tr>
+
+    </tbody>
+</table>
+
+
+@section Scripts{
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(".delete-btn").click(function (e) {
+            e.preventDefault()
+            console.log($(this).attr("href"))
+            Swal.fire({
+                title: 'Silmek istediyinizden eminsiz?',
+                text: "Bunu geri qaytara bilməyəcəksiniz!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Beli, Eminem!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var link = $(this).attr("href");
+                    fetch(link).then(response => response.json()).then(data => {
+                        if (data.status == 200) {
+                            location.reload(true)
+                        } else if(data.status == 400){
+                            Swal.fire(
+                                'Silmek olmaz!',
+                                'Bu categoriyaya bagli Datalar var.'
+                            )
+                        }
+
+
+
+                    }
+                    );
+                }
+            })
+        })
+    </script>
+}

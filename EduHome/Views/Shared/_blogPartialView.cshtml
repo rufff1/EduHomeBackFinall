@@ -1,0 +1,18 @@
+﻿@model IEnumerable<Blog>
+
+@foreach (Blog blog in Model.Take(3))
+{
+<div class="single-post mb-30">
+    <div class="single-post-img">
+        <a asp-controller="blog" asp-action="detail" asp-route-id="@blog.Id">
+            <img width="100" src="~/assets/img/blog/@blog.Image" alt="post">
+            <div class="blog-hover">
+                <i class="fa fa-link"></i>
+            </div>
+        </a>
+    </div>
+    <div class="single-post-content">
+        <h4><a asp-controller="blog" asp-action="detail" asp-route-id="@blog.Id">@blog.Name</a></h4>
+        <p>By @blog.Author /  @blog.CreatAt.ToString()</p>
+    </div>
+</div>}

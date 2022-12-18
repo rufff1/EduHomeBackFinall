@@ -1,0 +1,44 @@
+﻿@model NoticeRight
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Notice Right</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.IsDeleted)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Description)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.IsDeleted)
+            </td>
+            <td>
+                <a class="btn btn-dark" asp-action="Update" asp-route-id="@Model.Id">Update</a> |
+                <a class="btn btn-dark" asp-action="Detail" asp-route-id="@Model.Id">Details</a> |
+                @*<a class="btn btn-dark" asp-action="Delete" asp-route-id="@Model.Id">Delete</a>*@
+            </td>
+        </tr>
+
+    </tbody>
+</table>

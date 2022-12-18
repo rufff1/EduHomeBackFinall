@@ -1,0 +1,115 @@
+﻿@model EduHome.Model.Teacher
+
+@{
+    ViewData["Title"] = "Update";
+
+    IEnumerable<Skill> skills = ViewBag.TeacherSkills;
+    SelectList selectListSkill = new SelectList(skills, nameof(Skill.Id), nameof(Skill.Name));
+
+    IEnumerable<TeacherPosition> teacherPositions = ViewBag.TeacherPosition;
+    SelectList selectListPosition = new SelectList(teacherPositions, nameof(TeacherPosition.Id), nameof(TeacherPosition.Name));
+}
+
+
+
+<h4>Update Teacher</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post" enctype="multipart/form-data" asp-action="Update">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="FullName" class="control-label"></label>
+                <input asp-for="FullName" class="form-control" />
+                <span asp-validation-for="FullName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageFile" class="control-label"></label>
+                <input asp-for="ImageFile" class="form-control" />
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="About" class="control-label"></label>
+                <input asp-for="About" class="form-control" />
+                <span asp-validation-for="About" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Degree" class="control-label"></label>
+                <input asp-for="Degree" class="form-control" />
+                <span asp-validation-for="Degree" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Experience" class="control-label"></label>
+                <input asp-for="Experience" class="form-control" />
+                <span asp-validation-for="Experience" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Faculty" class="control-label"></label>
+                <input asp-for="Faculty" class="form-control" />
+                <span asp-validation-for="Faculty" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hobby" class="control-label"></label>
+                <input asp-for="Hobby" class="form-control" />
+                <span asp-validation-for="Hobby" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Email" class="control-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Phone" class="control-label"></label>
+                <input asp-for="Phone" class="form-control" />
+                <span asp-validation-for="Phone" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Skype" class="control-label"></label>
+                <input asp-for="Skype" class="form-control" />
+                <span asp-validation-for="Skype" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fblink" class="control-label"></label>
+                <input asp-for="Fblink" class="form-control" />
+                <span asp-validation-for="Fblink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PinttLink" class="control-label"></label>
+                <input asp-for="PinttLink" class="form-control" />
+                <span asp-validation-for="PinttLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="VimeoLink" class="control-label"></label>
+                <input asp-for="VimeoLink" class="form-control" />
+                <span asp-validation-for="VimeoLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TwtLink" class="control-label"></label>
+                <input asp-for="TwtLink" class="form-control" />
+                <span asp-validation-for="TwtLink" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TeacherPositionId" class="control-label"></label>
+                <select asp-for="TeacherPositionId" class="form-control" asp-items="selectListPosition"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="SkillIds" class="control-label"></label>
+                <select asp-for="SkillIds" class="form-control" asp-items="selectListSkill"></select>
+            </div>
+
+
+
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-dark" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a class="btn btn-dark" asp-action="Index">Back to List</a>
+</div>
+
+@section script{
+    @await Html.PartialAsync("_ValidationPartial")
+}

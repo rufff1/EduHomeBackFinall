@@ -1,0 +1,125 @@
+﻿@model AboutVM
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+<!-- Banner Area Start -->
+<div class="banner-area-wrapper">
+    <div class="banner-area text-center">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="banner-content-wrapper">
+                        <div class="banner-content">
+                            <h2>about us</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Banner Area End -->
+<!-- About Start -->
+<div class="about-area pt-145 pb-155">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6">
+                <div class="about-content">
+                    <h2>@Html.Raw(Model.WelcomeCourse.Title)</h2>
+                    <p>@Model.WelcomeCourse.Description</p>
+
+                    <a class="default-btn" asp-controller="course" asp-action="index" >view courses</a>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6">
+                <div class="about-img">
+                    <img src="~/assets/img/about/@Model.WelcomeCourse.Image" alt="about">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+<!-- Teacher Start -->
+<div class="teacher-area pb-150">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="section-title text-center">
+                    <img src="~/assets/img/icon/section.png" alt="title">
+                    <h2>meet our teachers</h2>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+
+
+            @await Html.PartialAsync("_teacherPartialView", Model.Teachers)
+
+        </div>
+    </div>
+</div>
+<!-- Teacher End -->
+<!-- Testimonial Area Start -->
+    <div class="testimonial-area pt-110 pb-105 text-center">
+        <div class="container">
+            <div class="row">
+                <div class="testimonial-owl owl-theme owl-carousel">
+                    <div class="col-md-8 col-md-offset-2 col-sm-12">
+                        <div class="single-testimonial">
+                            <div class="testimonial-info">
+                                <div class="testimonial-img">
+                                    <img src="~/assets/img/testimonial/@Model.testimional.Image" alt="testimonial">
+                                </div>
+                                <div class="testimonial-content">
+                                    <p>@Model.testimional.Description</p>
+                                    <h4>@Model.testimional.FullName</h4>
+                                    <h5>@Model.testimional.Position</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!-- Testimonial Area End -->
+<!-- Notice Start -->
+<section class="notice-area two pt-140 pb-100">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="notice-left-wrapper">
+                    <h3>notice board</h3>
+                    <div class="notice-left">
+                        @foreach (NoticeBoard noticeBoard in Model.NoticeBoards)
+                        {
+                            <div class="single-notice-left mb-23 pb-27">
+                                <h4>@noticeBoard.Date</h4>
+                                <p>@noticeBoard.Description</p>
+                            </div>
+                        }
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <div class="notice-right">
+                    @foreach (NoticeRight noticeRight in Model.NoticeRights)
+                    {
+                        <div class="single-notice-right pb-10 ">
+
+                            <h3>@noticeRight.Title</h3>
+                            <p>@noticeRight.Description</p>
+                        </div>
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- Notice End -->

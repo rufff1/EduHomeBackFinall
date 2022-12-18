@@ -1,0 +1,72 @@
+﻿@model Contact
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Contact</h2>
+
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.LocLink)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Location)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Adress)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LocIcon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PhonIcon)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AdressIcon)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => Model.LocLink)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Location)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Adress)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => Model.Phone)
+            </td>
+            <td>
+                <img width="100" src="~/assets/img/contact/@Model.LocIcon" alt="Alternate Text" />
+            </td>
+            <td>
+                <img width="100" src="~/assets/img/contact/@Model.PhonIcon" alt="Alternate Text" />
+                </td>
+            <td>
+
+                <img width="100" src="~/assets/img/contact/@Model.AdressIcon" alt="Alternate Text" />
+
+            </td>
+
+            <td>
+                <a class="btn btn-dark" asp-action="Update" asp-route-id="@Model.Id">Update</a> |
+                @*<a asp-action="Detail" asp-route-id="@Model.Id">Details</a>*@ |
+                @*<a asp-action="Delete" asp-route-id="@Model.Id">Delete</a>*@
+            </td>
+        </tr>
+
+    </tbody>
+</table>

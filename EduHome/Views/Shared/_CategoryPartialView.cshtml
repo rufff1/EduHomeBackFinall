@@ -1,0 +1,13 @@
+﻿@model IEnumerable<CourseCategory>
+
+
+<div class="single-blog-widget mb-50">
+    <h3>categories</h3>
+    <ul>
+        @foreach (CourseCategory courseCategory in Model)
+        {
+            <li><a asp-controller="course" asp-action="CategoryFindCourse" asp-route-id="@courseCategory.Id">@courseCategory.Name (@courseCategory.Courses.Count)</a></li>
+        }
+
+    </ul>
+</div>

@@ -1,0 +1,117 @@
+﻿@model IEnumerable<Speaker>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Speakers</h2>
+
+<p>
+    <a class="btn btn-dark" asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Image)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FullName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Position)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    <img width="100" src="~/assets/img/event/@item.Image" alt="Alternate Text" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FullName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Position)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsDeleted)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatAt)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CreatBy)
+                </td>
+                <td>
+                    <a class="btn btn-dark" asp-action="update" asp-route-id="@item.Id">Update</a> |
+                    <a class="btn btn-dark" asp-action="Detail" asp-route-id="@item.Id">Details</a> |
+                    <a class="btn btn-dark delete-btn" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+<div class="row justify-content-center mt-4">
+    <nav aria-label="...">
+        <ul class="pagination" style="justify-content:center">
+
+            <li class="page-item @(ViewBag.Currentpage == 1 ? "disabled" : "")">
+                <a class="page-link" asp-controller="speaker" asp-action="index" asp-route-page="@(ViewBag.CurrentPage-1)">Previous</a>
+            </li>
+
+            @for (int i = 1; i <= ViewBag.TotalPage; i++)
+            {
+                <li class="page-item  @(ViewBag.CurrentPage == i ? "active" : "")" style="pointer-events: @(ViewBag.CurrentPage == i ? "none" : "")">
+                    <a class="page-link" asp-controller="speaker" asp-action="index" asp-route-page="@i">@i</a>
+                </li>
+            }
+
+            <li class="page-item @(ViewBag.CurrentPage == ViewBag.TotalPage ? "disabled" : "")">
+                <a class="page-link" asp-controller="speaker" asp-action="index" asp-route-page="@(ViewBag.CurrentPage +1)">Next</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+@section Scripts{
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $(".delete-btn").click(function (e) {
+            e.preventDefault()
+            console.log($(this).attr("href"))
+            Swal.fire({
+                title: 'Silmek istediyinizden eminsiz?',
+                text: "Bunu geri qaytara bilməyəcəksiniz!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Beli, Eminem!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    var link = $(this).attr("href");
+                    fetch(link).then(response => response.json()).then(data => {
+                        if (data.status == 200) {
+                            location.reload(true)
+                        } else if(data.status == 400){
+                            Swal.fire(
+                                'Silmek olmaz!',
+                                'Bu Speakerle bagli Datalar var.'
+                            )
+                        }
+
+
+
+                    }
+                    );
+                }
+            })
+        })
+    </script>
+}
